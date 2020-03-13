@@ -1,0 +1,163 @@
+### 多行文字、图片垂直居中
+
+###### 多行文字垂直居中
+
+原理：将文字当做图片处理
+
+```html
+//父元素不能是浮动元素
+<div class="wordbox">
+  <span>100只 啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</span>
+</div>
+```
+
+
+
+```scss
+.wordbox {
+    display: table-cell;
+    width: 196px;
+    height: 108px;
+    vertical-align: middle;
+    span {
+        display: inline-block;
+        color: #3a3b3d;
+        line-height: 22px;
+        font-size: 12px; /*px*/
+        vertical-align: middle;
+    }
+}
+```
+
+
+
+###### 不同大小图片垂直居中
+
+```html
+<div>
+    <img src:'../'/>
+</div>
+```
+
+```scss
+div{
+    width:150px; 
+    height:150px; 
+    text-align:center; 
+    line-height:150px;
+     *font-size:125px;//暂不清楚
+    img{
+        vertical-align:middle;
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+### 全屏高度无滚动条
+
+```scss
+div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+```
+
+
+
+
+
+
+
+###	灰色滤镜
+
+```css
+div{
+    -webkit-filter:graycale(1);
+}
+```
+
+
+
+### 鼠标小手
+
+```css
+div{
+	cursor:pointer;
+}
+```
+
+
+
+### input清除样式
+
+```css
+input {
+          outline: none; 
+          border: none;
+      }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+    }
+
+    input[type="number"] {
+       -moz-appearance: textfield;
+    }
+```
+
+
+
+
+
+### 子类选择器
+
+```css
+p:nth-child(1){color:#000};   选择第一个元素 若第一个不是P元素则样式无效
+
+p:first-of-type{color:#ccc};  选择第一个P元素，该P元素可以不是父元素下的第一个元素
+```
+
+
+
+
+
+### div滚动和滚动条样式(不兼容IE)
+
+具体滚动条属性： https://www.lyblog.net/detail/314.html 
+
+```scss
+//box要给出固定高度
+.scrollbox {  
+    height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: 4px;   //滚动条宽度（设置为0隐藏滚动条）
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;  //隐藏滚动条上下按钮
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #cdd0d2;
+        border-radius: 2px;
+    }
+}
+```
+
