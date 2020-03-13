@@ -74,7 +74,7 @@
    console.log(ssr)  //["age",Symbol(miniYellow)]
    ```
    
-   <img src="E:\book\零基础学透 TypeScript\client-side\src\assets\symbol.jpg"  />
+   ![symbol](../img/symbol.jpg)
    
    
 
