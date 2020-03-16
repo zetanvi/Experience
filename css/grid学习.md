@@ -4,6 +4,10 @@
 
 ### 总结：
 
+- **grid的使用方式：单元格大小就是项目大小（推荐）或单元格以较小单位组成项目大小**
+
+  ![grid使用方式](../img/grid两种使用方式.png)
+
 - gird兼容性：支持chrome、Firefox、Safari、Edge、IE10及以上浏览器，IE浏览器要加上前缀**-ms-**
 
 - 使用grid后要尽量避免再使用**浮动**、**定位**、**display设置**等样式
@@ -38,136 +42,61 @@
    }
    ```
 
-2. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+2. grid-template-columns/grid-template-rows 单元格大小
+
+   ```css
+   /*基础用法  单位可以为绝对值150px,可以为百分比33.3%,可以为最小相对单位fr*/
+   .parent{
+       display:grid;
+       grid-template-columns:150px 20% 1fr 3fr;
+   }
+   /*repeat(次数，值)*/
+   .parent{
+       display:grid;
+       grid-template-columns:repeat(3,150px);
+       /*grid-template-columns:repeat(3,150px 200px 300px);*/
+   }
+   /*auto-fill 单元格大小固定，容器大小不固定，类似浮动*/
+   .parent{
+       display:grid;
+       grid-template-columns:repeat(auto-fill,100px);/*列宽100px*/
+   
+   ```
+
+3. grid-gap可缩写为gap  行列间距
+
+   ```css
+   /*gap:列间距 行间距;*/
+   .parent{
+       display:grid;
+       gap:20px 20px;
+   }
+   ```
+
+4. grid-auto-flow  排序默认先行后列
+
+   ```css
+   .parent{
+       display:grid;
+       grid-auto-flow:column;/*先列后行*/
+       grid-auto-flow:row;/*先行后列（默认）*/
+       grid-auto-flow:column dense;/*先列后行，自动填满空格*/
+       grid-auto-flow:row dense;/*先列后行，自动填满空格*/
+   }
+   ```
+
+5. place-items  单元格中内容的对齐方式
+
+   ```css
+   /*place-items:垂直方向 水平方向;  start/end/center*/
+   .parent{
+       display:grid;
+       place-items:start end;
+   }
+   ```
+
+   
 
 ##### 项目属性
+
+1. 
