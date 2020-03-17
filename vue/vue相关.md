@@ -26,9 +26,7 @@ pc：antdvue( https://www.antdv.com/docs/vue/introduce-cn/ ) iviewui  Vuetify (h
 
 1. 在.vue文件中的style标签加上scoped来独立样式作用域
 2. 当加上scoped时，每个html标签都会有一个独特的[data-v-xxx]属性
-3. 如果在.vue文件中引用了ui组件，此时修改ui组件的样式或者给ui组件添加类名进行样式上的修改时，要在类名前面加上/deep/
-
-
+3. 如果在.vue文件中引用了ui组件，想要修改 **组件里面** 的类名样式时要在类名前加/deep/。
 
 
 

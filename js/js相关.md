@@ -123,6 +123,14 @@ console.log(obj['%'],obj['小黄'])
 
 
 
+### 上传方式
+
+```javascript
+
+```
+
+
+
 
 
 ### 下载Excel方式
