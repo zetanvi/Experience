@@ -395,7 +395,7 @@ created(){
    //---------命名插槽  子组件能存在多个
    //父组件
    <child>
-   	<slot name="xx"></slot>    
+   	<div slot="xx"></div>    
    </child>
    //子组件
    <div id="child">
