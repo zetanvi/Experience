@@ -126,7 +126,18 @@ console.log(obj['%'],obj['小黄'])
 ### 上传方式
 
 ```javascript
-
+//使用input[type="file"]方式
+//html
+<input type="file" @change="upload">
+//js
+upload(e){
+    let param = new FormData()
+    //也可以使用append添加其他参数
+    param.append('file',e.target.files[0])
+    this.$api.update.upload(param).then(res=>{
+        //something
+    })
+}
 ```
 
 
@@ -219,4 +230,34 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 ```
 
 
+
+### 数组遍历方法
+
+- **forEach((item,index,arr)=>{})**     可以改变原数组，但对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。
+- **map((item,index,arr)=>{ return item})**    不会改变原数组，会返回一个经过处理的新数组，对数组中元素进行重新赋值时推荐使用这种，而且处理速度必forEach快。
+- **filter((item,index,arr)=>{return item>2})**  不会改变原数组，会返回一个符合处理逻辑的新数组，适合对数组中的元素进行筛选。
+- **reduce((accumulator,item,index,arr)=>{accumulator+item })**  不会改变原数组，accumulator是经过函数处理后的返回值**累计器**，函数体内可以是累加、累积等，不需要return，最后返回经过计算的值，适合对数组进行累加计算。
+- **some((item,index,arr)=>{item>2})**  判断数组元素是否符合所写的逻辑，只要有一个符合就返回true，相当于||，当arr为空数组时永远返回false。
+- **every((item,index,arr)=>{ item>2 })**  与some相似，不过要数组中所有元素符合条件才会返回true，相当于&&。
+
+
+
+
+
+
+
+
+
+### delete  
+
+​	可以用来删除对象属性 
+
+```javascript
+let a = {
+    xx:'xx',
+    yy:'yy'
+}
+delete a.xx
+console.log(a)  //{yy:'yy'}
+```
 
