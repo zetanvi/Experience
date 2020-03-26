@@ -8,6 +8,8 @@ vue-amap  地图    https://elemefe.github.io/vue-amap/#/
 
 vue-charts  图表     https://v-charts.js.org/#/   不仅以使用  还是用echarts
 
+markdown-it-vue  https://github.com/ravenq/markdown-it-vue 在页面中展示markdown文件
+
 
 
 
