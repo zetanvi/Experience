@@ -138,6 +138,14 @@ upload(e){
         //something
     })
 }
+//接口设置
+upload(params) {
+    return axios.post(`${base.baseurl}/markdown/fdsFile`, (params), {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
 ```
 
 
@@ -218,6 +226,11 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 	str.replace(reg,string)
  //截取   star是开始截取的底标 end是结束的底标(截取的值不包含end)，不传表示到结尾 返回值是截取的值
 	str.substring(star,end)
+ //es6新方法 判断字符串中是否包含其他字符串 返回值为bool值
+    str.includes('xx',n)   //是否包含'xx'
+	str.starstWith('xx',n) //是否在str开头位置包含'xx'
+	str.endsWith('xx',n)   //是否在str结尾位置包含'xx'
+    //endsWith中的n表示前n个字符，其他两个方法表示从第n个字符开始不包含n
 ```
 
 

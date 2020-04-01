@@ -418,13 +418,21 @@ created(){
    </div>
    ```
 
-   
+
+9. 项目中开发和生产接口设置
+
+   ```javascript
+   //在由vue-cli创建的项目中，对接口进行设置，以便自动处理开发和生产环境
+   //1.在config/dev.env.js中添加如下代码
+       VUE_BASE_URL = '"开发环境公共接口部分"'
+   //2.在config/prod.env.js中添加如下代码
+   	VUE_BASE_URL = '"生产环境公共接口部分"'
+   //3.在接口管理文件中（base.js）
+       base_url = process.env.VUE_APP_BASE_API
+   //process.env.VUE_APP_BASE_API会根据当前环境自动取值，这样在打包时就不用再去修改接口了。
+   ```
 
    
-
-
-
-
 
 
 
