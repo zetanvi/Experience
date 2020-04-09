@@ -257,10 +257,6 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 
 
 
-
-
-
-
 ### delete  
 
 ​	可以用来删除对象属性 
@@ -273,4 +269,85 @@ let a = {
 delete a.xx
 console.log(a)  //{yy:'yy'}
 ```
+
+
+
+### async/await
+
+> async/await是基于Generator函数的语法糖，用来实现按顺序完成异步操作（异步操作同步化）如：for循环中执行异步请求
+
+```vue
+<script>
+    data(){
+        return{
+            obj:{
+                a:1,
+                b:2
+            }
+        }
+    }
+    //async/await实例
+    methods:{
+        async forIn(){
+            for(const key in obj){
+                console.log(key,'forIn')
+                await this.getData(key,obj[key])
+            }
+        },
+        getData(k,num){
+            this.$api.home.getData(num).then(res=>{
+                console.log(k,'getData')
+            })
+        },
+        fnThen(){
+            console.log('c','fnThen')
+        },
+    },
+    created(){
+        this.forIn().then(()={
+            this.fnThen()
+        })
+        //执行顺序是：
+        // 1----------a,forIn
+        // 2----------a,getData
+        // 3----------b,forIn
+        // 4----------b,getData
+        // 5----------c,fnThen
+    }
+</script>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
