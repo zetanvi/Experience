@@ -319,7 +319,36 @@ console.log(a)  //{yy:'yy'}
 
 
 
+### WebSocket使用
 
+> WebSocket用来建立前后端之间的长连接，代替轮询。
+
+```javascript
+//建立连接  url:后端提供的地址
+let ws = new WebSocket(url)
+//连接建立成功后会触发onopen事件
+ws.onopen = () => {
+    console.log('此时连接建立成功')
+    //此时就可以向后端发送数据
+    ws.send(data)
+}
+ws.onmessage = event => {
+    //此时后端返回数据
+    let data = event.data
+}
+ws.onerror = () => {
+    //当通信发生错误时触发
+    console.log('通信出错')
+}
+ws.onclose = () => {
+    //当连接关闭时触发
+    console.log('连接关闭')
+}
+
+
+//前端使用WebSocket可以发送数据（如上面的ws.send），也可以直接关闭连接
+ws.close()//通常用于离开页面时断开连接
+```
 
 
 
