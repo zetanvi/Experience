@@ -235,16 +235,8 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 
 
 
-### 浏览器密码自动填充解决
 
-```javascript
-//问题：当页面出现有input[type="password"]时，不管input是不是隐藏状态(display:none;)，浏览器会推荐在该输入框中填充密码，在该页面第一个input[type="text"]中填充用户名。
-//解决方案：在页面最前端加上两个隐藏的input，input[type="text"]input[type="password"]
-```
-
-
-
-### 数组遍历方法
+### 数组方法
 
 - **forEach((item,index,arr)=>{})**     可以改变原数组，但对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。
 - **map((item,index,arr)=>{ return item})**    不会改变原数组，会返回一个经过处理的新数组，对数组中元素进行重新赋值时推荐使用这种，而且处理速度必forEach快。
@@ -253,6 +245,24 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 - **some((item,index,arr)=>{item>2})**  判断数组元素是否符合所写的逻辑，只要有一个符合就返回true，相当于||，当arr为空数组时永远返回false。
 - **every((item,index,arr)=>{ item>2 })**  与some相似，不过要数组中所有元素符合条件才会返回true，相当于&&。
 
+```javascript
+//array.fill（val,start,end）  填充数组  val填充值，start起始位置(不包含该位置)，end结束位置
+let arr = [1,2,3,4]
+arr.fill(0,1,3)  //[1,0,0,4]
+```
+
+
+
+
+
+
+
+### 浏览器密码自动填充解决
+
+```javascript
+//问题：当页面出现有input[type="password"]时，不管input是不是隐藏状态(display:none;)，浏览器会推荐在该输入框中填充密码，在该页面第一个input[type="text"]中填充用户名。
+//解决方案：在页面最前端加上两个隐藏的input，input[type="text"]input[type="password"]
+```
 
 
 
