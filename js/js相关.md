@@ -253,6 +253,28 @@ arr.fill(0,1,3)  //[1,0,0,4]
 
 
 
+### Math方法
+
+```javascript
+//Math.pow(a,b)  返回a的b次方
+Math.pow(2,3)  //8
+Math.pow(4,0.5) //2
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
