@@ -6,11 +6,9 @@ vue-cropper  图片剪切上传处理     https://github.com/xyxiao001/vue-cropp
 
 vue-amap  地图    https://elemefe.github.io/vue-amap/#/ 
 
-vue-charts  图表     https://v-charts.js.org/#/   不仅以使用  还是用echarts
-
 markdown-it-vue  https://github.com/ravenq/markdown-it-vue 在页面中展示markdown文件
 
-
+G2  https://g2.antv.vision/zh  数据可视化
 
 
 
@@ -100,7 +98,8 @@ export default{
 ```javascript
 v-for="(val,key,index) in obj" :key="index"
 
-val-值   key-键 
+val-该对象    key-键 
+取值的话  用val.name可以拿到 obj.name
 ```
 
 
