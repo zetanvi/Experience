@@ -224,7 +224,7 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 ```javascript
  //替换   reg是个正则，string字符串 ，不改变str 返回值是替换后的str
 	str.replace(reg,string)
- //截取   star是开始截取的底标 end是结束的底标(截取的值不包含end)，不传表示到结尾 返回值是截取的值
+ //截取   从0开始 star是开始截取的底标 end是结束的底标(截取的值不包含end)，不传表示到结尾 返回值是截取的值
 	str.substring(star,end)
  //es6新方法 判断字符串中是否包含其他字符串 返回值为bool值
     str.includes('xx',n)   //是否包含'xx'
