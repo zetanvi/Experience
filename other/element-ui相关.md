@@ -11,3 +11,6 @@
 1. el-tree  在显示隐藏时不会去掉选中状态  通过vif来重新加载el-tree   达到初始化目的
 2. el-tree  获取节点信息与回显 要用其中的方法  不能用data属性
 
+#### 3.使用keyup时要加上.native
+
+​	@keyup.native.enter="goSign"
