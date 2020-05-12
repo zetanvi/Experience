@@ -8,7 +8,7 @@ vue-amap  地图    https://elemefe.github.io/vue-amap/#/
 
 markdown-it-vue  https://github.com/ravenq/markdown-it-vue 在页面中展示markdown文件
 
-G2  https://g2.antv.vision/zh  数据可视化
+G2  https://g2plot.antv.vision/zh/docs/manual/introduction  开箱即用的图表
 
 
 
