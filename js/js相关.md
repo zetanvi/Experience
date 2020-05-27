@@ -349,6 +349,70 @@ console.log(a)  //{yy:'yy'}
 </script>
 ```
 
+###### TIPS：
+
+- async函数返回一个promise对象，因此可以用.then()链式
+
+- **在Vue中，当页面有子组件并且子组件依赖于父组件中请求得到的数据时，async/await无法同步执行相应的函数，即：**
+
+  ```javascript
+  methods:{
+      getData(){
+          setTimeout(()=>{
+             console.log(3) 
+          },0)
+      }
+  },
+  async created(){
+      console.log(1)
+      await this.getData()
+      console.log(2)
+  },
+  mounted(){
+      console.log(4)
+  }
+  //此时打印顺序为 1,4,3,2   
+  //原因:  vue中的生命周期相当于同步执行而且不会受到钩子函数内阻塞的影响，因此执行顺序为：
+  //1. created
+  //2. console.log(1)
+  //3. await this.getData() 此时created内部线程阻塞，需要this.getData执行完后才能执行后面的代码，即created中的代码是由含有异步执行转为全同步执行
+  //4. 由于async将created声明为异步函数，而异步函数中的同步代码可以按顺序执行，但是异步代码（请求、setTimeout）则会储存在任务队列等到线程空闲时再执行，so，此时执行mounted中的代码
+  //5. 线程空闲后，执行this.getData的回调函数
+  //6. console.log(2)
+  
+  
+  
+  //tips：
+  //vue中子父组件的生命周期顺序：父credted-->子credted-->子mounted-->父mounted
+  //因此在created中请求数据然后在子组件中使用没法同步做到，只能用v-if或先给个初始值然后再次赋值
+  ```
+
+
+
+
+
+
+
+### 由async/await引出的js执行顺序
+
+> js是单线程语言，所以在执行时只分同步和异步，比较典型的异步执行是：setTimeout和请求的回调。
+
+具体顺序为：
+
+```mermaid
+graph TD
+A[开始] --> B(普通同步操作)
+    B --> C{异步请求或setTimeout的触发}
+    C --> |同步| D[其他同步操作]
+    D --> F{同步任务操作完成}
+    F --> H{引入任务队列中的任务}
+    C --> |异步| I[回调函数储存在任务队列/事件队列]
+    I -->  H[主线程引入任务队列中的任务]
+    H -->  J[执行任务队列中的任务]
+```
+
+
+
 
 
 ### WebSocket使用
