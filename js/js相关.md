@@ -253,6 +253,39 @@ arr.fill(0,1,3)  //[1,0,0,4]
 
 
 
+### 遍历对象
+
+- 使用for-in遍历
+
+```javascript
+for (const key in object) {
+    if (object.hasOwnProperty(key)) {
+        const element = object[key];
+
+    }
+}
+```
+
+- 使用Object.keys(obj)或Object.values(obj)
+
+```javascript
+//Object.keys(obj)可以获得由key组成的数组，并且对key进行排序(由小到大)
+let obj = {
+    100:'50',
+    10:'5',
+    40:'20'
+}
+console.log(Object.keys(obj))  //[10,40,100]
+//Object.values(obj)获得由value组成的数组，排序同key一样
+console.log(Object.values(obj)) //['5','20','50']
+
+//tips:可以使用Object.keys(obj)或Object.values(obj)来判断对象是否为空对象
+```
+
+
+
+
+
 ### Math方法
 
 ```javascript
