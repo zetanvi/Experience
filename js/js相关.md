@@ -300,18 +300,6 @@ Math.pow(4,0.5) //2
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ### 浏览器密码自动填充解决
 
 ```javascript
@@ -485,6 +473,38 @@ ws.close()//通常用于离开页面时断开连接
 
 
 
+### scroll滚动
+
+- 获得当前页面的滚动位置
+
+```javascript
+const getScrollPosition = (el = window) => ({
+  x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+  y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+});
+
+// 事例
+getScrollPosition(); // {x: 0, y: 200}
+```
+
+
+
+- 平滑滚动到页面顶部
+
+```javascript
+const scrollToTop = () => {
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+  if (c > 0) {
+    window.requestAnimationFrame(scrollToTop);
+    window.scrollTo(0, c - c / 8);
+  }
+}
+
+// 事例
+scrollToTop()
+//window.requestAnimationFrame()  告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行。
+//requestAnimationFrame：优势：由系统决定回调函数的执行时机。60Hz的刷新频率，那么每次刷新的间隔中会执行一次回调函数，不会引起丢帧，不会卡顿。
+```
 
 
 
@@ -492,8 +512,13 @@ ws.close()//通常用于离开页面时断开连接
 
 
 
+### 确定页面的浏览器选项卡是否聚焦 (可以根据变化显示title上的文字)
 
-
+```
+const isBrowserTabFocused = () => !document.hidden;
+// 事例
+isBrowserTabFocused(); // true
+```
 
 
 
