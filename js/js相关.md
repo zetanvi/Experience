@@ -95,14 +95,26 @@ window.addEventListener('resize',throttle(yourfn,1000))
 ### Date自定义格式化日期
 
 ```javascript
-Date.prototype.toLocaleString = function(){
-    let addZero = (num)=>{
-        if(num<10) return '0'+num
-        return num
+Date.prototype.toLocaleString = function(str, sec){
+    // 补0   例如 2018/7/10 14:7:2  补完后为 2018/07/10 14:07:02
+    function addZero(num) {
+        if (num < 10)
+            return "0" + num;
+        return num;
     }
-    return this.getFullYear()+'/'+addZero(this.getMonth()+1)+'/'+addZero(this.getDate())+' '+addZero(this.getHours())+':'+addZero(this.getMinutes())+':'+addZero(this.getSeconds())
+    // 按自定义拼接格式返回
+    if (sec === "year") {
+        return this.getFullYear()
+    } else if (sec === "month") {
+        return this.getFullYear() + str + addZero(this.getMonth() + 1)
+    } else if (sec === "date") {
+        return this.getFullYear() + str + addZero(this.getMonth() + 1) + str + addZero(this.getDate())
+    } else if (sec === "sec") {
+        return this.getFullYear() + str + addZero(this.getMonth() + 1) + str + addZero(this.getDate()) + " " +
+            addZero(this.getHours()) + ":" + addZero(this.getMinutes()) + ":" + addZero(this.getSeconds());
+    }
 }
-let time = new Date(Date.now()).toLocaleString
+let time = new Date(Date.now()).toLocaleString('-','year')
 console.log(`现在时间时${time}`)
 ```
 
