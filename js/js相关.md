@@ -243,14 +243,19 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 	str.starstWith('xx',n) //是否在str开头位置包含'xx'
 	str.endsWith('xx',n)   //是否在str结尾位置包含'xx'
     //endsWith中的n表示前n个字符，其他两个方法表示从第n个字符开始不包含n
-```
 
+//字符串数字比较大小
+//在项目中，出现了用户在输入框中输入100,50然后两个数字比较大小之后发现返回结果为50>100,
+//究其原因，发现在字符串的大小比较中，会把两个数的第一个字符转换为 ASCII 码值进行比较，若相同，以此类推，所以100与50比较，就是1的ASCII值同5的ASCII值进行比较。所以100<50
+```
 
 
 
 ### 数组方法
 
-- **forEach((item,index,arr)=>{})**     可以改变原数组，但对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。
+###### 		ES5数组遍历方法
+
+- **forEach((item,index,arr)=>{})**     可以改变原数组，但对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。  ***无法通过continue结束本次循环，可使用return跳出本次循环；无法使用break结束循环，没有结束循环关键字***
 - **map((item,index,arr)=>{ return item})**    不会改变原数组，会返回一个经过处理的新数组，对数组中元素进行重新赋值时推荐使用这种，而且处理速度必forEach快。
 - **filter((item,index,arr)=>{return item>2})**  不会改变原数组，会返回一个符合处理逻辑的新数组，适合对数组中的元素进行筛选。
 - **reduce((accumulator,item,index,arr)=>{accumulator+item })**  不会改变原数组，accumulator是经过函数处理后的返回值**累计器**，函数体内可以是累加、累积等，不需要return，最后返回经过计算的值，适合对数组进行累加计算。
@@ -262,6 +267,22 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 let arr = [1,2,3,4]
 arr.fill(0,1,3)  //[1,0,0,4]
 ```
+
+###### 	ES6遍历数组方法
+
+- **for of**  用法同for  in 
+
+```javascript
+let arr = [1,2,3]
+for(let value of arr){
+    console.log(value)
+}
+//打印：1,2,3
+```
+
+
+
+
 
 
 
