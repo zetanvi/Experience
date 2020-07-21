@@ -243,6 +243,11 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 	str.starstWith('xx',n) //是否在str开头位置包含'xx'
 	str.endsWith('xx',n)   //是否在str结尾位置包含'xx'
     //endsWith中的n表示前n个字符，其他两个方法表示从第n个字符开始不包含n
+	
+//lastIndexOf(),indexOf()
+	str.indexOf(str,index)//从index开始查询出现str的下标，没有返回-1
+	str.lastIndexOf(str,index)//从index开始查询最后出现str的下标，没有返回-1
+
 
 //字符串数字比较大小
 //在项目中，出现了用户在输入框中输入100,50然后两个数字比较大小之后发现返回结果为50>100,
@@ -255,12 +260,12 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 
 ###### 		ES5数组遍历方法
 
-- **forEach((item,index,arr)=>{})**     可以改变原数组，但对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。  ***无法通过continue结束本次循环，可使用return跳出本次循环；无法使用break结束循环，没有结束循环关键字***
+- **forEach((item,index,arr)=>{})**     可以改变原数组，但对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。  ***无法通过continue结束本次循环，可使用return跳出本次循环；无法使用break结束循环，没有结束循环关键字 （当需要跳出循环时，可以使用some/every来代替，some可以通过return true来直接结束循环，every可以通过return false结束循环）***  
 - **map((item,index,arr)=>{ return item})**    不会改变原数组，会返回一个经过处理的新数组，对数组中元素进行重新赋值时推荐使用这种，而且处理速度必forEach快。
 - **filter((item,index,arr)=>{return item>2})**  不会改变原数组，会返回一个符合处理逻辑的新数组，适合对数组中的元素进行筛选。
 - **reduce((accumulator,item,index,arr)=>{accumulator+item })**  不会改变原数组，accumulator是经过函数处理后的返回值**累计器**，函数体内可以是累加、累积等，不需要return，最后返回经过计算的值，适合对数组进行累加计算。
-- **some((item,index,arr)=>{item>2})**  判断数组元素是否符合所写的逻辑，只要有一个符合就返回true，相当于||，当arr为空数组时永远返回false。
-- **every((item,index,arr)=>{ item>2 })**  与some相似，不过要数组中所有元素符合条件才会返回true，相当于&&。
+- **some((item,index,arr)=>{return item>2})**  判断数组元素是否符合所写的逻辑，只要有一个符合就返回true，相当于||，当arr为空数组时永远返回false。
+- **every((item,index,arr)=>{return item>2 })**  与some相似，不过要数组中所有元素符合条件才会返回true，相当于&&。
 
 ```javascript
 //array.fill（val,start,end）  填充数组  val填充值，start起始位置(不包含该位置)，end结束位置
