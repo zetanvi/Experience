@@ -435,3 +435,17 @@ created(){
 
 
 
+### 生成Vnode
+
+- 在vue中可以使用**this.$createElement**来生成vnode对象
+
+  ```javascript
+  const h = this.$createElement
+  h(a,b,c)
+  // a-------元素标签  'div'、'span'
+  // b-------元素配置  事件、类名、属性等，没有填null  见https://cn.vuejs.org/v2/guide/render-function.html  中的深入数据对象
+  // c-------子元素或自身标签内容，一般为数组,不需要可不填   [h('span',null),'miniyellow']此时miniyellow就为自身标签中的内容
+  ```
+
+  
+

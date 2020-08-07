@@ -240,7 +240,7 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 	str.substring(star,end)
  //es6新方法 判断字符串中是否包含其他字符串 返回值为bool值
     str.includes('xx',n)   //是否包含'xx'
-	str.starstWith('xx',n) //是否在str开头位置包含'xx'
+	str.startsWith('xx',n) //是否在str开头位置包含'xx'
 	str.endsWith('xx',n)   //是否在str结尾位置包含'xx'
     //endsWith中的n表示前n个字符，其他两个方法表示从第n个字符开始不包含n
 	
@@ -285,6 +285,21 @@ for(let value of arr){
 //打印：1,2,3
 ```
 
+- **find((item,index,arr)=>{return index>2})** 遍历数组，找到第一个符合条件的元素并返回**该元素**
+- **findIndex((item,index,arr)=>{return index>2})** 遍历数组，找到第一个符合条件的元素并返回**该元素的index**
+
+###### 其他数组方法
+
+- 深复制数组
+
+```javascript
+let a1 = [1,2]
+let a2 = [...a1]
+a2[0] = 3
+console.log(a1) //[1,2]
+console.log(a2) //[3,2]
+```
+
 
 
 
@@ -318,6 +333,17 @@ console.log(Object.keys(obj))  //[10,40,100]
 console.log(Object.values(obj)) //['5','20','50']
 
 //tips:可以使用Object.keys(obj)或Object.values(obj)来判断对象是否为空对象
+```
+
+- 对象深复制
+
+```javascript
+//通过JSON方法来实现
+let a = {a:1,b:2}
+let b = JSON.parse(JSON.stringify(a))
+b.a = 3
+console.log(a) //{a:1,b:2}
+console.log(b) //{a:3,b:2}
 ```
 
 

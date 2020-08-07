@@ -220,3 +220,184 @@ lineOption: {
       },
 ```
 
+
+
+#### 引入地图
+
+- 去网站下载相应地图区域的json文件（http://datav.aliyun.com/tools/atlas/#&lat=31.840232667909365&lng=104.2822265625&zoom=4）
+- 将json文件保存在项目公共文件中（public或static）
+- 通过axios请求文件
+
+```javascript
+//接口url直接用'/+文件名'，baseUrl为空字符串，请求方式为get
+export function getJson() {
+  return request({
+    url: '/pds.json',
+    method: 'get',
+    baseURL:''
+  })
+}
+getMapListData()
+    .then((res) => {
+    if (res.code === 200) {
+        //获取地图上的点配置
+        let points = res.data.map((item) => {
+            let obj = {
+                value: [],
+                itemStyle: {
+                    color: "",
+                },
+                equName: "",
+                equRealPosition: "",
+                label: {
+                    show: false,
+                    color: "",
+                },
+            };
+            obj.value = item.equCoordinate.split(",");
+            obj.itemStyle.color =
+                item.equStatus === 0 ? "#FF6B18" : "#00FFB2";
+            obj.label.color = item.equStatus === 0 ? "#FF6B18" : "#00FFB2";
+            obj.equName = item.equName;
+            obj.equRealPosition = item.equRealPosition;
+            return obj;
+        });
+        return points;
+    }
+})
+    .then((points) => {
+    if (this.timerChart) {
+        clearInterval(this.timerChart);
+    }
+    getJson().then((geoJson) => {
+        //请求到文件后，注册地图
+        echarts.registerMap("pds", geoJson);
+        let option = {
+            //地图配置
+            geo: {
+                map: "pds",
+                aspectScale: 0.75, //长宽比
+                zoom: 1.1,
+                roam: false,
+                itemStyle: {
+                    normal: {
+                        areaColor: {
+                            type: "radial",
+                            x: 0.5,
+                            y: 0.5,
+                            r: 0.8,
+                            colorStops: [
+                                {
+                                    offset: 0,
+                                    color: "#09132c", // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: "#274d68", // 100% 处的颜色
+                                },
+                            ],
+                            globalCoord: true, // 缺省为 false
+                        },
+                        //通过阴影实现3d效果
+                        shadowColor: "#00e0ff",
+                        shadowOffsetX: 10,
+                        shadowOffsetY: 11,
+                    },
+                    //高亮样式
+                    emphasis: {
+                        areaColor: "#2AB8FF",
+                        borderWidth: 0,
+                        color: "green",
+                        label: {
+                            show: false,
+                        },
+                    },
+                },
+            },
+            series: [
+                {
+                    type: "map",
+                    roam: false,
+                    label: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                                color: "#fff",
+                            },
+                        },
+                        emphasis: {
+                            textStyle: {
+                                color: "#fff",
+                            },
+                        },
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderColor: "rgb(147, 235, 248)",
+                            borderWidth: 1,
+                            areaColor: "#192431",
+                        },
+                        emphasis: {
+                            areaColor: "#2a4362",
+                            borderWidth: 0.1,
+                        },
+                    },
+                    zoom: 1.1,
+                    map: "pds", //使用pds地图
+                },
+                //地图上的点
+                {
+                    type: "effectScatter",
+                    coordinateSystem: "geo",
+                    showEffectOn: "render",
+                    zlevel: 1,
+                    rippleEffect: {
+                        period: 15,
+                        scale: 4,
+                        brushType: "fill",
+                    },
+                    hoverAnimation: true,
+                    //点旁信息提示
+                    label: {
+                        normal: {
+                            formatter: (item) => {
+                                return `设备名：${item.data.equName}\n地址：${item.data.equRealPosition}`;
+                            },
+                            position: "right",
+                            offset: [15, 0],
+                            // color: "#FF6B18",
+                            show: false,
+                        },
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: "#1DE9B6",
+                            shadowBlur: 10,
+                            shadowColor: "#333",
+                        },
+                    },
+                    symbolSize: 12,
+                    data: points,
+                },
+            ],
+        };
+        //应用配置
+        this.mapChart.setOption(option, true);
+        //设置信息循环显示
+        let options = this.mapChart.getOption();
+        let i = points.length - 1;
+        this.timerChart = setInterval(() => {
+            i = (i + 1) % points.length;
+            options.series[1].data.forEach(
+                (item) => (item.label.show = false)
+            );
+            // 开启指定的label
+            options.series[1].data[i].label = {
+                show: true,
+            };
+            this.mapChart.setOption(options, true);
+        }, 3000);
+    });
+});
+```
+
