@@ -258,9 +258,29 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 
 ### 数组方法
 
+###### 数组方法
+
+- **arr.splice(index,num,item)** index是截取的下标，num为截取的个数，item为替换的内容(可省略)
+
+  ```javascript
+  let arr1 = [1,2,3,4,5]
+  arr1.splice(1,2) //[3,4]
+  console.log(arr1) //[1,2,5]
+  //tips  从后往前进行删除,删除后2个
+  let arr2 = [6,7,8,9,10]
+  arr2.splice(-2,2)   //选中下标向后数
+  ```
+
+  
+
+  
+
 ###### 		ES5数组遍历方法
 
-- **forEach((item,index,arr)=>{})**     可以改变原数组，但对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。  ***无法通过continue结束本次循环，可使用return跳出本次循环；无法使用break结束循环，没有结束循环关键字 （当需要跳出循环时，可以使用some/every来代替，some可以通过return true来直接结束循环，every可以通过return false结束循环）***  
+- **forEach((item,index,arr)=>{})**     可以改变原数组
+  + 对数组中元素进行重新赋值时要使用  arr[index] = xxx 来实现。  
+  + 无法通过continue结束本次循环，可使用return跳出本次循环；无法使用break结束循环，没有结束循环关键字 （当需要跳出循环时，可以使用some/every来代替，some可以通过return true来直接结束循环，every可以通过return false结束循环）  
+  + 在遍历中index是自增且无法修改，所以不能在遍历中使用影响数组length的方法
 - **map((item,index,arr)=>{ return item})**    不会改变原数组，会返回一个经过处理的新数组，对数组中元素进行重新赋值时推荐使用这种，而且处理速度必forEach快。
 - **filter((item,index,arr)=>{return item>2})**  不会改变原数组，会返回一个符合处理逻辑的新数组，适合对数组中的元素进行筛选。
 - **reduce((accumulator,item,index,arr)=>{accumulator+item })**  不会改变原数组，accumulator是经过函数处理后的返回值**累计器**，函数体内可以是累加、累积等，不需要return，最后返回经过计算的值，适合对数组进行累加计算。
