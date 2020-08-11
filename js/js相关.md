@@ -291,6 +291,8 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
 //array.fill（val,start,end）  填充数组  val填充值，start起始位置(不包含该位置)，end结束位置
 let arr = [1,2,3,4]
 arr.fill(0,1,3)  //[1,0,0,4]
+//生成一个重复元素的数组
+let sameArr = new Array(4).fill(0) //[0,0,0,0]
 ```
 
 ###### 	ES6遍历数组方法
