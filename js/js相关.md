@@ -266,13 +266,15 @@ axios.post(`${base.baseurl}/gas/getOneEngine`, qs.stringify(params)).then(res=>{
   let arr1 = [1,2,3,4,5]
   arr1.splice(1,2) //[3,4]
   console.log(arr1) //[1,2,5]
-  //tips  从后往前进行删除,删除后2个
+  //从后往前进行删除,删除后2个
   let arr2 = [6,7,8,9,10]
-  arr2.splice(-2,2)   //选中下标向后数
+  arr2.splice(-2,2)   //选中下标向后数2
+  //删除index后的所有元素
+arr.splice(index)
   ```
 
   
-
+  
   
 
 ###### 		ES5数组遍历方法

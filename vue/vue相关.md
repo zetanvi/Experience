@@ -447,5 +447,5 @@ created(){
   // c-------子元素或自身标签内容，一般为数组,不需要可不填   [h('span',null),'miniyellow']此时miniyellow就为自身标签中的内容
   ```
 
-  
++ 查看元素的具体配置 [深入数据对象](https://cn.vuejs.org/v2/guide/render-function.html#深入数据对象)
 
